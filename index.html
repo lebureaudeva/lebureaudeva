@@ -18,7 +18,7 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
 body{background:var(--bg-light);color:var(--text-dark); scroll-behavior: smooth;}
 
-section { padding: 100px 10%; min-height: 100vh; position: relative; overflow: hidden; }
+section { padding: 140px 10%; min-height: 100vh; position: relative; overflow: hidden; }
 
 /* --- EFFET FUMÉ --- */
 section::after {
@@ -28,7 +28,7 @@ section::after {
     pointer-events: none;
 }
 
-#temoignages::before, #rdv::before {
+#temoignages::before, #rdv::before, #faq::before {
     content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 150px;
     background: linear-gradient(to top, transparent, var(--bg-light));
     z-index: 2;
@@ -75,106 +75,119 @@ nav a{text-decoration:none;color:var(--text-dark);font-size:.9rem; font-weight: 
 
 .hero-content { position: relative; z-index: 3; max-width: 600px; margin-right: 5%; }
 .hero-content h1 { 
-    font-size: 4.5rem; color: white; line-height: 1; margin-bottom: 5px; 
+    font-size: 4.5rem; color: white; line-height: 1.2; margin-bottom: 20px; 
     text-shadow: 3px 3px 0px var(--primary-brown), 5px 5px 15px rgba(0,0,0,0.3); 
 }
-.hero-content .subtitle { font-size: 1.8rem; color: white; font-weight: 300; margin-bottom: 20px; display: block; }
+.hero-content .subtitle { font-size: 1.8rem; color: white; font-weight: 300; margin-bottom: 30px; display: block; }
 
 /* PHILOSOPHIE */
 #philosophie{background:var(--bg-light); text-align:center;}
-#philosophie h2{font-size:2.8rem;margin-bottom:70px; color: var(--primary-brown);}
-.philo-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px}
-.philo-item{ background:white;padding:40px;border-radius:35px; box-shadow:0 15px 40px rgba(0,0,0,0.03); border-bottom: 4px solid var(--accent-gold); text-align: left; }
-.philo-item h3 { margin-bottom: 10px; color: var(--primary-brown); }
+#philosophie h2{font-size:2.8rem;margin-bottom:80px; color: var(--primary-brown); line-height: 1.4;}
+.philo-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.philo-item{ background:white;padding:45px;border-radius:35px; box-shadow:0 15px 40px rgba(0,0,0,0.03); border-bottom: 4px solid var(--accent-gold); text-align: left; }
+.philo-item h3 { margin-bottom: 15px; color: var(--primary-brown); }
+
+/* FAQ */
+.faq-section { background: var(--soft-bg); }
+.faq-layout { display: flex; gap: 60px; max-width: 1100px; margin: 0 auto; align-items: flex-start; }
+.faq-intro { flex: 1; position: sticky; top: 150px; text-align: left; }
+.faq-intro h2 { font-size: 2.5rem; color: var(--primary-brown); line-height: 1.2; margin-bottom: 20px; }
+.faq-intro p { font-size: 1rem; color: #666; font-style: italic; }
+
+.faq-container { flex: 1.5; width: 100%; }
+.faq-item { background: white; border-radius: 15px; margin-bottom: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.02); overflow: hidden; border: 1px solid rgba(93, 64, 55, 0.05); }
+.faq-question { padding: 18px 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 500; color: var(--primary-brown); font-size: 0.95rem; text-align: left; }
+.faq-answer { padding: 0 25px; max-height: 0; overflow: hidden; transition: 0.4s ease; color: #666; font-size: 0.85rem; line-height: 1.6; }
+.faq-item.active .faq-answer { padding: 0 25px 20px; max-height: 300px; }
+.faq-icon { color: var(--accent-gold); transition: 0.3s; font-size: 1.2rem; margin-left: 10px; }
+.faq-item.active .faq-icon { transform: rotate(45deg); }
 
 /* FORFAITS */
 #formules { background: var(--bg-light); }
-#formules h2{text-align:center;font-size:3rem;margin-bottom:10px; color: var(--primary-brown);}
-.sub{opacity:.6;text-align:center;margin-bottom:40px; font-style: italic;}
-.offers-rect{display:flex;gap:15px; height: 550px;}
+#formules h2{text-align:center;font-size:3rem;margin-bottom:20px; color: var(--primary-brown);}
+.sub{opacity:.6;text-align:center;margin-bottom:60px; font-style: italic;}
+.offers-rect{display:flex;gap:20px; height: 580px;}
 .offer-rect{position:relative;flex:1;border-radius:40px;overflow:hidden;transition:.7s cubic-bezier(0.4, 0, 0.2, 1);cursor:pointer}
 .offer-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(.6);transition:.7s}
-.offer-content{position:absolute;inset:0;padding:25px;display:flex;flex-direction:column;justify-content:flex-end;color:white; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);}
-.details{max-height:0;opacity:0;transition:.5s; font-size: 0.8rem;}
-.details ul { list-style: none; margin-top: 10px; }
-.details ul li { margin-bottom: 4px; position: relative; padding-left: 15px; line-height: 1.2; }
+.offer-content{position:absolute;inset:0;padding:30px;display:flex;flex-direction:column;justify-content:flex-end;color:white; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);}
+.details{max-height:0;opacity:0;transition:.5s; font-size: 0.85rem;}
+.details ul { list-style: none; margin-top: 15px; }
+.details ul li { margin-bottom: 6px; position: relative; padding-left: 15px; line-height: 1.3; }
 .details ul li::before { content: "•"; position: absolute; left: 0; color: var(--accent-gold); }
 
-/* Effet Hover Ordinateur */
 @media(min-width: 901px) {
     .offers-rect .offer-rect:hover{flex:3}
-    .offers-rect .offer-rect:hover .details{max-height:400px;opacity:1; margin-top: 10px;}
+    .offers-rect .offer-rect:hover .details{max-height:400px;opacity:1; margin-top: 15px;}
 }
 
 /* VERSION MOBILE */
 @media(max-width:900px){
-  .hero-content h1 { font-size: 2.5rem; }
+  section { padding: 80px 5% !important; }
+  .faq-layout { flex-direction: column; gap: 30px; }
+  .faq-intro { position: static; text-align: center; }
+  .faq-intro h2 { font-size: 2.2rem; }
+  .faq-question { padding: 15px 20px; font-size: 0.9rem; }
+  .hero-content h1 { font-size: 2.8rem; }
   .philo-grid { grid-template-columns: 1fr; }
   .offers-rect { flex-direction: column; height: auto; gap: 20px; }
-  .offer-rect { height: auto; min-height: 400px; flex: none; border-radius: 30px; }
-  .details { max-height: 500px !important; opacity: 1 !important; margin-top: 15px; }
-  .offer-bg { filter: brightness(.4); }
-  nav { width: 95%; gap: 10px; padding: 10px 15px; top: 10px; }
+  .offer-rect { height: 400px; }
+  nav { width: 95%; gap: 10px; padding: 10px 15px; }
   nav a { font-size: 0.65rem; }
-  .rdv-btn-nav { padding: 8px 12px; }
-  .footer-container { flex-direction: column !important; gap: 30px !important; text-align: center !important; }
-  .footer-info { text-align: center !important; }
-  .info-item { justify-content: center !important; }
-  .footer-logo img { max-width: 180px; margin: 0 auto; }
 }
 
 .price-line{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 5px;}
 .price strong{color:var(--accent-gold);font-size:1.4rem}
-.unit { color: white; font-size: 0.8rem; font-weight: 300; margin-left: 2px; }
 
 /* TEMOIGNAGES */
-#temoignages { background: var(--accent-gold); color: white; padding: 120px 0; min-height: auto; text-align: center; }
-#temoignages h2 { margin-bottom: 40px; font-size: 2.5rem; }
-.testimonial-track { display:flex; gap:30px; animation:scroll 30s linear infinite; margin-bottom: 50px; }
-.testimonial { min-width:300px; background:rgba(255,255,255,0.2); padding:30px; border-radius:25px; font-style:italic; font-size: 0.9rem; border: 1px solid rgba(255,255,255,0.1); text-align: left; }
+#temoignages { background: var(--accent-gold); color: white; padding: 140px 0; text-align: center; }
+#temoignages h2 { margin-bottom: 50px; font-size: 2.5rem; }
+.testimonial-track { display:flex; gap:30px; animation:scroll 35s linear infinite; margin-bottom: 60px; }
+.testimonial { min-width:300px; background:rgba(255,255,255,0.2); padding:35px; border-radius:25px; font-style:italic; font-size: 0.95rem; border: 1px solid rgba(255,255,255,0.1); text-align: left; }
 @keyframes scroll{ 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 
 .btn-avis {
-    display: inline-block; background: white; color: var(--primary-brown); padding: 15px 35px;
+    display: inline-block; background: white; color: var(--primary-brown); padding: 18px 40px;
     border-radius: 50px; text-decoration: none; font-weight: 600; transition: 0.3s;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
 /* PRISE EN MAIN */
-#prise-en-main { background: var(--bg-light); text-align: center; padding: 100px 10%; min-height: auto; }
-.steps-grid { display: flex; justify-content: space-around; gap: 30px; flex-wrap: wrap; margin-top: 40px; }
-.step-card { flex: 1; min-width: 250px; padding: 30px 20px; border-radius: 30px; background: var(--soft-bg); transition: 0.4s; border: 1px solid rgba(93, 64, 55, 0.05); box-shadow: 0 10px 30px rgba(0,0,0,0.02);}
-.step-number { width: 50px; height: 50px; background: var(--accent-gold); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-weight: 600;}
+#prise-en-main { background: var(--bg-light); text-align: center; }
+.steps-grid { display: flex; justify-content: space-around; gap: 40px; flex-wrap: wrap; margin-top: 50px; }
+.step-card { flex: 1; min-width: 250px; padding: 40px 25px; border-radius: 35px; background: var(--soft-bg); transition: 0.4s; border: 1px solid rgba(93, 64, 55, 0.05); }
+.step-number { width: 55px; height: 55px; background: var(--accent-gold); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; font-weight: 600; font-size: 1.2rem;}
 
-/* RDV */
-#rdv { background: url('rdv.png') no-repeat center center/cover; padding: 120px 10%; min-height: 80vh; display: flex; align-items: center; }
-#rdv .overlay-rdv { content: ""; position: absolute; inset: 0; background: rgba(255, 255, 255, 0.2); z-index: 1; }
-.calendar { position: relative; z-index: 3; max-width: 650px; width: 100%; margin:auto; background: rgba(255, 255, 255, 0.98); padding: 50px; border-radius: 40px; box-shadow: 0 30px 60px rgba(0,0,0,0.15); text-align: center; }
+/* RDV & BOUTON CALENDRIER */
+#rdv { background: url('rdv.png') no-repeat center center/cover; padding: 140px 10%; display: flex; align-items: center; }
+.calendar { position: relative; z-index: 3; max-width: 650px; width: 100%; margin:auto; background: rgba(255, 255, 255, 0.98); padding: 60px; border-radius: 45px; box-shadow: 0 30px 60px rgba(0,0,0,0.15); text-align: center; }
 
 .btn-zcal {
-    display: inline-block; background: var(--primary-brown); color: white; text-decoration: none;
-    padding: 20px 40px; border-radius: 50px; font-weight: 600; font-size: 1.1rem; margin-top: 20px;
-    transition: 0.3s; box-shadow: 0 10px 20px rgba(93, 64, 55, 0.3);
+    display: inline-block; background: var(--primary-brown); color: white; padding: 20px 45px;
+    border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1.1rem;
+    transition: 0.3s; box-shadow: 0 15px 30px rgba(93, 64, 55, 0.2);
+    animation: pulse 2s infinite;
 }
+.btn-zcal:hover { transform: translateY(-3px); box-shadow: 0 20px 40px rgba(93, 64, 55, 0.3); }
 
 /* FOOTER */
-.footer-main { background: white; padding: 60px 0; border-top: 1px solid #f0f0f0; margin-top: 80px;}
+.footer-main { background: white; padding: 80px 0; border-top: 1px solid #f0f0f0; margin-top: 80px;}
 .footer-container { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 80px; }
-.footer-logo img { max-width: 220px; height: auto; }
-.footer-info { text-align: left; color: var(--text-dark); font-weight: 300; font-size: 0.9rem; }
-.info-item { display: flex; align-items: center; margin-bottom: 10px; }
-.info-item span { margin-right: 12px; font-size: 1.1rem; color: var(--accent-gold); }
-.btn-mentions { background: none; border: none; color: #999; text-decoration: underline; cursor: pointer; margin-top: 10px; font-size: 0.85rem; padding: 0;}
+.footer-logo img { max-width: 220px; }
+.footer-info { text-align: left; color: var(--text-dark); line-height: 2; }
+.info-item span { margin-right: 15px; color: var(--accent-gold); }
+.btn-mentions { background: none; border: none; color: #999; text-decoration: underline; cursor: pointer; margin-top: 15px; font-size: 0.85rem;}
 
 /* MODALS */
-.modal-mentions {
-    display: none; position: fixed; z-index: 100000; left: 0; top: 0; width: 100%; height: 100%;
-    background-color: white; overflow-y: auto;
+.modal-mentions { display: none; position: fixed; z-index: 100000; left: 0; top: 0; width: 100%; height: 100%; background: white; overflow-y: auto; }
+.modal-content-wrapper { max-width: 800px; margin: 0 auto; padding: 120px 5% 60px; line-height: 1.8; color: #444; }
+.modal-content-wrapper h3 { 
+    color: var(--primary-brown); 
+    border-left: 4px solid var(--accent-gold); 
+    padding-left: 15px; 
+    margin: 30px 0 15px; 
+    font-size: 1.3rem;
 }
-.modal-content-wrapper { max-width: 800px; margin: 0 auto; padding: 100px 5% 40px; line-height: 1.8; color: #444; }
-.modal-content-wrapper h3 { margin-top: 30px; margin-bottom: 10px; color: var(--accent-gold); border-left: 3px solid var(--accent-gold); padding-left: 15px;}
 .close-modal { position: fixed; top: 30px; right: 50px; font-size: 40px; cursor: pointer; color: var(--primary-brown); z-index: 100001; }
-.modal-signature { max-width: 250px; margin-top: 40px; display: block; }
 </style>
 </head>
 
@@ -183,6 +196,7 @@ nav a{text-decoration:none;color:var(--text-dark);font-size:.9rem; font-weight: 
 <nav id="top-nav">
   <a href="#accueil" onclick="closeAllModals()">Accueil</a>
   <a href="#formules" onclick="closeAllModals()">Forfaits</a>
+  <a href="#faq" onclick="closeAllModals()">FAQ</a>
   <a href="#temoignages" onclick="closeAllModals()">Témoignages</a>
   <a href="#rdv" class="rdv-btn-nav" onclick="closeAllModals()">Prendre rendez-vous</a>
 </nav>
@@ -200,7 +214,6 @@ nav a{text-decoration:none;color:var(--text-dark);font-size:.9rem; font-weight: 
         <p>Ce site est hébergé par GitHub Pages (GitHub Inc., 88 Colin P. Kelly Jr. St., San Francisco, CA 94107, USA).</p>
         <h3>Données personnelles</h3>
         <p>Les informations collectées via l'e-mail ou la prise de rendez-vous sont utilisées uniquement pour répondre aux demandes de contact. Conformément au RGPD, vous disposez d’un droit d’accès, de modification et de suppression de vos données via lebureaudeva@icloud.com.</p>
-        <img src="Signaturee-mail.png" alt="Signature" class="modal-signature">
     </div>
 </div>
 
@@ -220,7 +233,6 @@ nav a{text-decoration:none;color:var(--text-dark);font-size:.9rem; font-weight: 
         <p>Les forfaits sont sans engagement de durée. La collaboration peut être interrompue sous réserve d'un préavis de 2 jours ouvrés par mail.</p>
         <h3>6. CONFIDENTIALITÉ</h3>
         <p>Le bureau d'Eva est tenu au secret professionnel absolu. Les données patients restent la propriété exclusive du praticien.</p>
-        <img src="Signaturee-mail.png" alt="Signature" class="modal-signature">
     </div>
 </div>
 
@@ -235,12 +247,12 @@ nav a{text-decoration:none;color:var(--text-dark);font-size:.9rem; font-weight: 
     </section>
 
     <section id="philosophie">
-      <h2>Votre priorité : les patients.<br>La mienne : vos appels</h2>
+      <h2>Votre priorité : les patients.<br>La mienne : vos appels.</h2>
       <div class="philo-grid">
         <div class="philo-item"><h3>Gagner du temps</h3><p>Je m’occupe de vos appels et de votre agenda pour que vous puissiez vous concentrer sur vos patients.</p></div>
-        <div class="philo-item"><h3>Accueil attentif</h3><p>Chaque appel est traité avec bienveillance et professionnalisme.</p></div>
-        <div class="philo-item"><h3>Agenda organisé</h3><p>Prise de rendez-vous et suivis quotidien pour un planning fluide.</p></div>
-        <div class="philo-item"><h3>Rentabilité assuré</h3><p>Mes services sont rapidement rentabilisés grâce à une gestion efficace.</p></div>
+        <div class="philo-item"><h3>Accueil attentif</h3><p>Chaque appel est traité avec bienveillance et professionnalisme, comme si j'étais à votre cabinet.</p></div>
+        <div class="philo-item"><h3>Agenda organisé</h3><p>Prise de rendez-vous et suivi quotidien pour un planning fluide et sans fausse note.</p></div>
+        <div class="philo-item"><h3>Rentabilité</h3><p>Mes services sont rapidement rentabilisés grâce à une gestion optimale de vos rendez-vous.</p></div>
       </div>
     </section>
 
@@ -249,7 +261,7 @@ nav a{text-decoration:none;color:var(--text-dark);font-size:.9rem; font-weight: 
       <div class="sub">Sans engagement • 1 semaine d’essai possible</div>
       <div class="offers-rect">
         <script>
-            const detailForfait = `<ul><li>Réception des appels</li><li>Organisation et suivi de l’agenda</li><li>Prise et modification de RDV</li><li>Envoi de SMS de rappel</li><li>Gestion des attentes</li></ul>`;
+            const detailForfait = `<ul><li>Réception des appels</li><li>Organisation et suivi de l’agenda</li><li>Prise et modification de RDV</li><li>Envoi de SMS de rappel</li><li>Gestion des listes d'attentes</li></ul>`;
         </script>
         
         <div class="offer-rect">
@@ -298,31 +310,61 @@ nav a{text-decoration:none;color:var(--text-dark);font-size:.9rem; font-weight: 
       </div>
     </section>
 
+    <section id="faq" class="faq-section">
+        <div class="faq-layout">
+            <div class="faq-intro">
+                <h2>Je réponds à vos interrogations</h2>
+                <p>Besoin d'en savoir plus sur la collaboration ? Voici les réponses aux questions les plus courantes.</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">Qu'est-ce qu'une secrétaire indépendante ? <span class="faq-icon">+</span></div>
+                    <div class="faq-answer">C'est une collaboratrice externe qui gère vos missions administratives à distance. Contrairement à une salariée, vous n'avez pas de charges sociales, pas de congés payés à gérer et aucun matériel à fournir.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Avec quels professionnels travaillez-vous ? <span class="faq-icon">+</span></div>
+                    <div class="faq-answer">Je me spécialise dans le secteur médical et paramédical : médecins généralistes, ostéopathes, kinésithérapeutes, psychologues, etc.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Comment gérez-vous les urgences ? <span class="faq-icon">+</span></div>
+                    <div class="faq-answer">Nous établissons ensemble un protocole strict. En cas d'urgence signalée, je peux vous transférer l'appel sur une ligne prioritaire ou orienter le patient vers les services de secours selon vos consignes.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Quels sont les services exacts inclus ? <span class="faq-icon">+</span></div>
+                    <div class="faq-answer">Mes prestations incluent l'accueil téléphonique personnalisé, la gestion de votre agenda en temps réel, la prise de rendez-vous, l'envoi de rappels par SMS et la gestion des listes d'attente.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Les forfaits sont-ils réellement sans engagement ? <span class="faq-icon">+</span></div>
+                    <div class="faq-answer">Oui, la liberté est totale. Vous pouvez interrompre la prestation à tout moment avec un simple préavis de 2 jours ouvrés par mail.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="temoignages">
       <h2>Témoignages</h2>
       <div class="testimonial-track">
         <div class="testimonial">« Organisation fluide et accueil professionnel »</div>
-        <div class="testimonial">« Un vrai soulagement au quotidien »</div>
-        <div class="testimonial">« Mes patients sont rassurés »</div>
-        <div class="testimonial">« Collaboration humaine et efficace »</div>
-        <div class="testimonial">« Organisation fluide et accueil professionnel »</div>
+        <div class="testimonial">« Un vrai soulagement au quotidien pour mon cabinet »</div>
+        <div class="testimonial">« Mes patients apprécient beaucoup la douceur de l'accueil »</div>
+        <div class="testimonial">« Collaboration humaine, efficace et très réactive »</div>
+        <div class="testimonial">« Une gestion d'agenda parfaite, je recommande vivement »</div>
       </div>
       <div style="margin-top: 30px; text-align: center;">
-        <a href="https://g.page/r/CY5hkLbEZoVoEBM/review" target="_blank" class="btn-avis">✍️ Laisser un avis sur Google</a>
+        <a href="mailto:lebureaudeva@icloud.com" class="btn-avis">✍️ Laisser un témoignage</a>
       </div>
     </section>
 
     <section id="prise-en-main">
         <h2>Une prise en main tout en douceur</h2>
         <div class="steps-grid">
-            <div class="step-card"><div class="step-number">1</div><h3>Faisons connaissance</h3><p>Échange sur vos besoins.</p></div>
-            <div class="step-card"><div class="step-number">2</div><h3>Vos consignes</h3><p>Transmettez vos instructions simplement.</p></div>
-            <div class="step-card"><div class="step-number">3</div><h3>C'est parti !</h3><p>Activation immédiate.</p></div>
+            <div class="step-card"><div class="step-number">1</div><h3>Faisons connaissance</h3><p>Échangeons sur vos besoins et votre rythme de travail.</p></div>
+            <div class="step-card"><div class="step-number">2</div><h3>Vos consignes</h3><p>Transmettez vos instructions de gestion d'agenda simplement.</p></div>
+            <div class="step-card"><div class="step-number">3</div><h3>C'est parti !</h3><p>Activation immédiate de votre secrétariat externalisé.</p></div>
         </div>
     </section>
 
     <section id="rdv">
-      <div class="overlay-rdv"></div>
       <div class="calendar">
         <h2 style="color:var(--primary-brown); margin-bottom:20px; font-size: 1.8rem;">Parlons de votre projet</h2>
         <p style="margin-bottom: 25px;">Réservez votre appel découverte gratuit de 30 minutes.</p>
@@ -347,6 +389,17 @@ nav a{text-decoration:none;color:var(--text-dark);font-size:.9rem; font-weight: 
 </div>
 
 <script>
+    // FAQ Toggle
+    document.querySelectorAll('.faq-question').forEach(question => {
+        question.addEventListener('click', () => {
+            const item = question.parentElement;
+            item.classList.toggle('active');
+            document.querySelectorAll('.faq-item').forEach(otherItem => {
+                if (otherItem !== item) otherItem.classList.remove('active');
+            });
+        });
+    });
+
     function openMentions() { document.getElementById("modalMentions").style.display = "block"; document.getElementById("main-content").style.display = "none"; window.scrollTo(0,0); }
     function closeMentions() { document.getElementById("modalMentions").style.display = "none"; document.getElementById("main-content").style.display = "block"; }
     function openCGPS() { document.getElementById("modalCGPS").style.display = "block"; document.getElementById("main-content").style.display = "none"; window.scrollTo(0,0); }

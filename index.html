@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Le bureau d'Eva – Télésecrétariat médical</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
 :root{
@@ -121,6 +120,25 @@ nav a{text-decoration:none;color:var(--text-dark);font-size:.9rem; font-weight: 
     .offers-rect .offer-rect:hover .details{max-height:400px;opacity:1; margin-top: 15px;}
 }
 
+/* VERSION MOBILE */
+@media(max-width:900px){
+  section { padding: 80px 5% !important; }
+  .faq-layout { flex-direction: column; gap: 30px; }
+  .faq-intro { position: static; text-align: center; }
+  .faq-intro h2 { font-size: 2.2rem; }
+  .faq-question { padding: 15px 20px; font-size: 0.9rem; }
+  .hero-content h1 { font-size: 2.8rem; }
+  .philo-grid { grid-template-columns: 1fr; }
+  .offers-rect { flex-direction: column; height: auto; gap: 20px; }
+  .offer-rect { height: auto; min-height: 450px; }
+  .details { max-height: none !important; opacity: 1 !important; margin-top: 15px; }
+  nav { width: 95%; gap: 10px; padding: 10px 15px; }
+  nav a { font-size: 0.65rem; }
+}
+
+.price-line{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 5px;}
+.price strong{color:var(--accent-gold);font-size:1.4rem}
+
 /* TEMOIGNAGES */
 #temoignages { background: var(--accent-gold); color: white; padding: 140px 0; text-align: center; }
 #temoignages h2 { margin-bottom: 50px; font-size: 2.5rem; }
@@ -162,16 +180,6 @@ nav a{text-decoration:none;color:var(--text-dark);font-size:.9rem; font-weight: 
 .info-item span { margin-right: 15px; color: var(--accent-gold); }
 .btn-mentions { background: none; border: none; color: #999; text-decoration: underline; cursor: pointer; margin-top: 15px; font-size: 0.85rem;}
 
-/* STYLE RÉSEAUX SOCIAUX */
-.social-links { display: flex; gap: 15px; margin-top: 20px; margin-bottom: 10px; }
-.social-icon {
-  width: 40px; height: 40px; background: var(--soft-bg); color: var(--primary-brown);
-  border-radius: 50%; display: flex; align-items: center; justify-content: center;
-  text-decoration: none; transition: 0.3s; border: 1px solid rgba(93, 64, 55, 0.1);
-  font-size: 1.1rem;
-}
-.social-icon:hover { background: var(--accent-gold); color: white; transform: translateY(-3px); }
-
 /* MODALS */
 .modal-mentions { display: none; position: fixed; z-index: 100000; left: 0; top: 0; width: 100%; height: 100%; background: white; overflow-y: auto; }
 .modal-content-wrapper { max-width: 800px; margin: 0 auto; padding: 120px 5% 60px; line-height: 1.8; color: #444; }
@@ -183,27 +191,6 @@ nav a{text-decoration:none;color:var(--text-dark);font-size:.9rem; font-weight: 
     font-size: 1.3rem;
 }
 .close-modal { position: fixed; top: 30px; right: 50px; font-size: 40px; cursor: pointer; color: var(--primary-brown); z-index: 100001; }
-
-.price-line{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 5px;}
-.price strong{color:var(--accent-gold);font-size:1.4rem}
-
-/* VERSION MOBILE */
-@media(max-width:900px){
-  section { padding: 80px 5% !important; }
-  .footer-container { flex-direction: column; gap: 40px; text-align: center; }
-  .footer-info { text-align: center; }
-  .social-links { justify-content: center; }
-  .faq-layout { flex-direction: column; gap: 30px; }
-  .faq-intro { position: static; text-align: center; }
-  .faq-intro h2 { font-size: 2.2rem; }
-  .hero-content h1 { font-size: 2.8rem; }
-  .philo-grid { grid-template-columns: 1fr; }
-  .offers-rect { flex-direction: column; height: auto; gap: 20px; }
-  .offer-rect { height: auto; min-height: 450px; }
-  .details { max-height: none !important; opacity: 1 !important; margin-top: 15px; }
-  nav { width: 95%; gap: 10px; padding: 10px 15px; }
-  nav a { font-size: 0.65rem; }
-}
 </style>
 </head>
 
@@ -223,13 +210,13 @@ nav a{text-decoration:none;color:var(--text-dark);font-size:.9rem; font-weight: 
         <h2 style="text-align:center; color:var(--primary-brown); margin-bottom:40px;">Mentions légales</h2>
         <p><strong>Propriétaire :</strong> HUCHETTE Eva, entrepreneur individuel | <strong>SIRET :</strong> 99919530800013</p>
         <p><strong>Adresse :</strong> 238 impasse de Goutemajou 09210 Lézat sur lèze</p>
-        <p><strong>Contact :</strong> 07.68.27.67.16 | lebureaudeva@icloud.com</p>
+        <p><strong>Contact :</strong> 07.68.27.67.16 | contact@lebureaudeva.fr</p>
         <h3>Activité</h3>
         <p>Le bureau d’eva propose des services de secrétariat médical externalisé et de gestion d’agenda à destination de professionnels de santé et de praticiens paramédicaux.</p>
         <h3>Hébergement</h3>
         <p>Ce site est hébergé par GitHub Pages (GitHub Inc., 88 Colin P. Kelly Jr. St., San Francisco, CA 94107, USA).</p>
         <h3>Données personnelles</h3>
-        <p>Les informations collectées via l'e-mail ou la prise de rendez-vous sont utilisées uniquement pour répondre aux demandes de contact. Conformément au RGPD, vous disposez d’un droit d’accès, de modification et de suppression de vos données via lebureaudeva@icloud.com.</p>
+        <p>Les informations collectées via l'e-mail ou la prise de rendez-vous sont utilisées uniquement pour répondre aux demandes de contact. Conformément au RGPD, vous disposez d’un droit d’accès, de modification et de suppression de vos données via contact@lebureaudeva.fr.</p>
     </div>
 </div>
 
@@ -397,17 +384,7 @@ nav a{text-decoration:none;color:var(--text-dark);font-size:.9rem; font-weight: 
         <div class="footer-info">
           <div class="info-item"><span>📍</span> 238 impasse de Goutemajou, 09210 Lézat sur lèze</div>
           <div class="info-item"><span>📞</span> 07.68.27.67.16</div>
-          <div class="info-item"><span>✉️</span> lebureaudeva@icloud.com</div>
-          
-          <div class="social-links">
-            <a href="https://www.facebook.com/profile.php?id=61587425344326" target="_blank" rel="noopener" class="social-icon" title="Facebook">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://www.instagram.com/lebureaudeva/" target="_blank" rel="noopener" class="social-icon" title="Instagram">
-              <i class="fab fa-instagram"></i>
-            </a>
-          </div>
-
+          <div class="info-item"><span>✉️</span> contact@lebureaudeva.fr</div>
           <div style="display:flex; gap:15px; margin-top:10px;">
             <button class="btn-mentions" onclick="openMentions()">Mentions légales</button>
             <button class="btn-mentions" onclick="openCGPS()">CGPS</button>

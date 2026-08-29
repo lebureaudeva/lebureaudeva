@@ -194,107 +194,224 @@ nav a {
     color: var(--primary-brown);
 }
 
-/* Forfaits */
+/* Forfaits - Fond pdvp.png avec voile beige/marron */
 #formules {
     --fade-top: var(--beige-soft);
     --fade-bottom: var(--beige-soft);
-    background: var(--bg-light);
+    background-image: linear-gradient(to bottom, rgba(243,232,220,0.88) 0%, rgba(250,246,241,0.78) 50%, rgba(243,232,220,0.88) 100%), url('pdvp.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 #formules h2 {
     text-align: center;
     font-size: 3rem;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     color: var(--primary-brown);
-}
-
-.sub {
-    opacity: .6;
-    text-align: center;
-    margin-bottom: 60px;
-    font-style: italic;
-}
-
-.offers-rect {
-    display: flex;
-    gap: 20px;
-    height: 580px;
     position: relative;
     z-index: 3;
 }
 
-.offer-rect {
+.sub {
+    opacity: .85;
+    text-align: center;
+    margin-bottom: 50px;
+    font-style: italic;
+    color: var(--primary-brown);
     position: relative;
-    flex: 1;
-    border-radius: 40px;
-    overflow: hidden;
-    transition: .7s cubic-bezier(.4, 0, .2, 1);
-    cursor: pointer;
+    z-index: 3;
 }
 
-.offer-bg {
-    position: absolute;
-    inset: 0;
-    background-size: cover;
-    background-position: center;
-    filter: brightness(.6);
-    transition: .7s;
+/* Coque de téléphone plus grande et habillant les forfaits */
+.phone-mockup {
+    max-width: 520px;
+    margin: 0 auto;
+    background: #6d4c41; /* Châssis marron chaleureux assorti au site */
+    border-radius: 56px;
+    padding: 18px 16px;
+    box-shadow: 0 35px 80px rgba(93, 64, 55, 0.32), inset 0 0 0 2px #8d6e63, inset 0 0 0 6px #3e2723;
+    position: relative;
+    z-index: 3;
 }
 
-.offer-content {
+/* Boutons physiques simulés de l'iPhone */
+.phone-mockup::before {
+    content: "";
     position: absolute;
-    inset: 0;
-    padding: 30px;
+    left: -4px;
+    top: 120px;
+    width: 4px;
+    height: 35px;
+    background: #3e2723;
+    border-radius: 2px 0 0 2px;
+}
+.phone-mockup::after {
+    content: "";
+    position: absolute;
+    right: -4px;
+    top: 140px;
+    width: 4px;
+    height: 55px;
+    background: #3e2723;
+    border-radius: 0 2px 2px 0;
+}
+
+.phone-screen {
+    background: var(--beige-soft);
+    border-radius: 42px;
+    padding: 45px 18px 25px 18px;
+    max-height: 720px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(93, 64, 55, 0.2) transparent;
+    border: 1px solid rgba(217, 139, 95, 0.25);
+    position: relative;
+}
+
+/* Dynamic Island style iPhone en haut de l'écran */
+.iphone-dynamic-island {
+    position: absolute;
+    top: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 130px;
+    height: 28px;
+    background: #1c1c1e;
+    border-radius: 16px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 12px;
+}
+.iphone-dynamic-island::before {
+    content: "";
+    position: absolute;
+    left: 14px;
+    width: 11px;
+    height: 11px;
+    background: #0a0a0c;
+    border-radius: 50%;
+}
+
+.phone-screen::-webkit-scrollbar {
+    width: 4px;
+}
+.phone-screen::-webkit-scrollbar-thumb {
+    background: rgba(93, 64, 55, 0.2);
+    border-radius: 4px;
+}
+
+.ios-forfaits-container {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    color: white;
-    background: linear-gradient(to top, rgba(0,0,0,.9), transparent);
+    gap: 16px;
+    position: relative;
+    margin-top: 10px;
 }
 
-.details {
+.ios-forfait-bulle {
+    background: white;
+    border: 1px solid rgba(217, 139, 95, 0.22);
+    border-radius: 26px;
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    color: var(--text-dark);
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    box-shadow: 0 6px 20px rgba(93, 64, 55, 0.04);
+}
+
+.ios-forfait-gauche {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.ios-forfait-icone {
+    color: var(--accent-orange);
+    flex-shrink: 0;
+    transition: color 0.3s ease;
+}
+
+.ios-forfait-texte {
+    flex-grow: 1;
+}
+
+.ios-forfait-texte h3 {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--primary-brown);
+}
+
+.ios-forfait-texte p {
+    margin: 3px 0 0 0;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.ios-forfait-texte p strong {
+    color: var(--accent-orange);
+}
+
+.ios-forfait-options {
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: var(--accent-orange);
+    font-weight: bold;
+    align-self: center;
+}
+
+.ios-forfait-details {
     max-height: 0;
+    overflow: hidden;
     opacity: 0;
-    transition: .5s;
-    font-size: .85rem;
+    transition: max-height 0.4s ease, opacity 0.3s ease, margin 0.3s ease;
+    font-size: 0.88rem;
+    color: #555;
+    border-top: 1px solid rgba(217, 139, 95, 0.15);
+    margin-top: 0;
 }
 
-.details ul {
+.ios-forfait-details ul {
     list-style: none;
-    margin-top: 15px;
+    padding-top: 12px;
+    margin: 0;
 }
 
-.details ul li {
+.ios-forfait-details ul li {
     margin-bottom: 6px;
     position: relative;
-    padding-left: 15px;
-    line-height: 1.3;
+    padding-left: 16px;
 }
 
-.details ul li::before {
-    content: "•";
+.ios-forfait-details ul li::before {
+    content: "-";
     position: absolute;
     left: 0;
     color: var(--accent-orange);
 }
 
-.price-line {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 5px;
-    border-bottom: 1px solid rgba(255,255,255,.3);
-    padding-bottom: 5px;
+/* Effet au survol et au clic style iOS */
+.ios-forfait-bulle:hover, 
+.ios-forfait-bulle.active {
+    transform: scale(1.02);
+    background: #ffffff;
+    box-shadow: 0 10px 25px rgba(93, 64, 55, 0.10);
+    border-color: var(--accent-orange);
 }
 
-.price strong {
-    color: var(--accent-orange);
-    font-size: 1.4rem;
-}
-
-@media(min-width: 901px) {
-    .offers-rect .offer-rect:hover { flex: 3; }
-    .offers-rect .offer-rect:hover .details { max-height: 400px; opacity: 1; margin-top: 15px; }
+.ios-forfait-bulle:hover .ios-forfait-details,
+.ios-forfait-bulle.active .ios-forfait-details {
+    max-height: 190px;
+    opacity: 1;
+    margin-top: 12px;
 }
 
 /* FAQ */
@@ -642,9 +759,6 @@ nav a {
     .hero-content { max-width: 90%; margin-right: 0; }
     .hero-content h1 { font-size: 2.8rem; }
     .philo-grid { grid-template-columns: 1fr; }
-    .offers-rect { flex-direction: column; height: auto; }
-    .offer-rect { height: auto; min-height: 450px; }
-    .details { max-height: none !important; opacity: 1 !important; margin-top: 15px; }
     .faq-layout { flex-direction: column; gap: 30px; }
     .faq-intro { position: static; text-align: center; }
     .steps-grid { flex-direction: column; }
@@ -663,7 +777,7 @@ nav a {
     <a href="#rdv" class="rdv-btn-nav" onclick="closeAllModals()">Prendre rendez-vous</a>
 </nav>
 
-<!-- MENTIONS LÉGALES MISES À JOUR -->
+<!-- MENTIONS LÉGALES -->
 <div id="modalMentions" class="modal-mentions">
     <span class="close-modal" onclick="closeMentions()">&times;</span>
     <div class="modal-content-wrapper">
@@ -683,7 +797,7 @@ nav a {
     </div>
 </div>
 
-<!-- CGPS MISES À JOUR -->
+<!-- CGPS -->
 <div id="modalCGPS" class="modal-mentions">
     <span class="close-modal" onclick="closeCGPS()">&times;</span>
     <div class="modal-content-wrapper">
@@ -743,84 +857,103 @@ nav a {
 
     <section id="formules">
         <h2>Les forfaits</h2>
-        <div class="sub">Sans engagement • 1 semaine d’essai possible</div>
-        <div class="offers-rect">
-            <div class="offer-rect">
-                <div class="offer-bg" style="background-image:url('forfait1.png')"></div>
-                <div class="offer-content">
-                    <h3>À l’appel</h3>
-                    <div class="details">
-                        <div class="price-line">
-                            <span>Sur mesure</span>
-                            <span class="price"><strong>1,50€</strong> <span class="unit">/appel</span></span>
+        <div class="sub">Sans engagement - 1 semaine d'essai possible</div>
+        
+        <!-- Coque de téléphone agrandie habillant les forfaits -->
+        <div class="phone-mockup">
+            <div class="phone-screen">
+                <div class="iphone-dynamic-island"></div>
+                <div class="ios-forfaits-container">
+                    <!-- Forfait 1 -->
+                    <div class="ios-forfait-bulle">
+                        <div class="ios-forfait-gauche">
+                            <svg class="ios-forfait-icone" viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                                <path d="M12.3 2c-0.1 0-0.3 0-0.4 0C7.1 2.3 3 6.6 3 11.9c0 5.5 4.5 10 10 10 4.2 0 7.8-2.6 9.3-6.3 0.1-0.3-0.2-0.6-0.5-0.5-3.3 1.1-6.9-0.8-8-4.1-0.7-2.2-0.1-4.7 1.6-6.3 0.2-0.2 0.1-0.6-0.2-0.7-0.9-0.3-1.8-0.5-2.8-0.5z"/>
+                            </svg>
+                            <div class="ios-forfait-texte">
+                                <h3>A l'appel</h3>
+                                <p>Sur mesure - <strong>1,50 euros</strong> / appel</p>
+                            </div>
+                            <div class="ios-forfait-options">...</div>
                         </div>
-                        <ul>
-                            <li>Gestion de vos appels</li>
-                            <li>Gestion de votre agenda</li>
-                            <li>Prise et suivi de vos rendez-vous</li>
-                            <li>Réponse à vos demandes</li>
-                            <li>Suivi et rappels</li>
-                        </ul>
+                        <div class="ios-forfait-details">
+                            <ul>
+                                <li>Gestion de vos appels</li>
+                                <li>Gestion de votre agenda</li>
+                                <li>Prise et suivi de vos rendez-vous</li>
+                                <li>Reponse à vos demandes</li>
+                                <li>Suivi et rappels</li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-            </div>
 
-            <div class="offer-rect">
-                <div class="offer-bg" style="background-image:url('forfait2.png')"></div>
-                <div class="offer-content">
-                    <h3>Start</h3>
-                    <div class="details">
-                        <div class="price-line">
-                            <span>200 appels/mois</span>
-                            <span class="price"><strong>1,40€</strong> <span class="unit">/appel</span></span>
+                    <!-- Forfait 2 -->
+                    <div class="ios-forfait-bulle active">
+                        <div class="ios-forfait-gauche">
+                            <svg class="ios-forfait-icone" viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                            <div class="ios-forfait-texte">
+                                <h3>Start</h3>
+                                <p>200 appels/mois - <strong>1,40 euros</strong> / appel</p>
+                            </div>
+                            <div class="ios-forfait-options">...</div>
                         </div>
-                        <ul>
-                            <li>Gestion de vos appels</li>
-                            <li>Gestion de votre agenda</li>
-                            <li>Prise et suivi de vos rendez-vous</li>
-                            <li>Réponse à vos demandes</li>
-                            <li>Suivi et rappels</li>
-                        </ul>
+                        <div class="ios-forfait-details">
+                            <ul>
+                                <li>Gestion de vos appels</li>
+                                <li>Gestion de votre agenda</li>
+                                <li>Prise et suivi de vos rendez-vous</li>
+                                <li>Reponse à vos demandes</li>
+                                <li>Suivi et rappels</li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-            </div>
 
-            <div class="offer-rect">
-                <div class="offer-bg" style="background-image:url('forfait3.png')"></div>
-                <div class="offer-content">
-                    <h3>Active</h3>
-                    <div class="details">
-                        <div class="price-line">
-                            <span>350 appels/mois</span>
-                            <span class="price"><strong>1,35€</strong> <span class="unit">/appel</span></span>
+                    <!-- Forfait 3 -->
+                    <div class="ios-forfait-bulle">
+                        <div class="ios-forfait-gauche">
+                            <svg class="ios-forfait-icone" viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                            </svg>
+                            <div class="ios-forfait-texte">
+                                <h3>Active</h3>
+                                <p>350 appels/mois - <strong>1,35 euros</strong> / appel</p>
+                            </div>
+                            <div class="ios-forfait-options">...</div>
                         </div>
-                        <ul>
-                            <li>Gestion de vos appels</li>
-                            <li>Gestion de votre agenda</li>
-                            <li>Prise et suivi de vos rendez-vous</li>
-                            <li>Réponse à vos demandes</li>
-                            <li>Suivi et rappels</li>
-                        </ul>
+                        <div class="ios-forfait-details">
+                            <ul>
+                                <li>Gestion de vos appels</li>
+                                <li>Gestion de votre agenda</li>
+                                <li>Prise et suivi de vos rendez-vous</li>
+                                <li>Reponse à vos demandes</li>
+                                <li>Suivi et rappels</li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-            </div>
 
-            <div class="offer-rect">
-                <div class="offer-bg" style="background-image:url('forfait4.png')"></div>
-                <div class="offer-content">
-                    <h3>Collective</h3>
-                    <div class="details">
-                        <div class="price-line">
-                            <span>600 appels/mois</span>
-                            <span class="price"><strong>1,30€</strong> <span class="unit">/appel</span></span>
+                    <!-- Forfait 4 -->
+                    <div class="ios-forfait-bulle">
+                        <div class="ios-forfait-gauche">
+                            <svg class="ios-forfait-icone" viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                                <path d="M20 6h-4V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM10 4h4v2h-4V4zm10 15H4V8h16v11z"/>
+                            </svg>
+                            <div class="ios-forfait-texte">
+                                <h3>Collective</h3>
+                                <p>600 appels/mois - <strong>1,30 euros</strong> / appel</p>
+                            </div>
+                            <div class="ios-forfait-options">...</div>
                         </div>
-                        <ul>
-                            <li>Gestion de vos appels</li>
-                            <li>Gestion de votre agenda</li>
-                            <li>Prise et suivi de vos rendez-vous</li>
-                            <li>Réponse à vos demandes</li>
-                            <li>Suivi et rappels</li>
-                        </ul>
+                        <div class="ios-forfait-details">
+                            <ul>
+                                <li>Gestion de vos appels</li>
+                                <li>Gestion de votre agenda</li>
+                                <li>Prise et suivi de vos rendez-vous</li>
+                                <li>Reponse à vos demandes</li>
+                                <li>Suivi et rappels</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -965,6 +1098,15 @@ faqItems.forEach(item => {
             currentlyActive.classList.remove('active');
         }
         item.classList.toggle('active');
+    });
+});
+
+document.querySelectorAll('.ios-forfait-bulle').forEach(bulle => {
+    bulle.addEventListener('click', function(e) {
+        document.querySelectorAll('.ios-forfait-bulle').forEach(b => {
+            if(b !== this) b.classList.remove('active');
+        });
+        this.classList.toggle('active');
     });
 });
 </script>

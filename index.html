@@ -3,317 +3,831 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Le bureau d'Eva – Télésecrétariat médical</title>
+<title>Le bureau d'Eva - Secrétaire indépendante</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-
 <style>
-:root{
-  --primary-brown: #5d4037; 
-  --accent-gold: #c5a47e;   
-  --bg-light: #ffffff;      
-  --soft-bg: #fdfbf9;
-  --text-dark: #2d2422;
+:root {
+    --primary-brown: #5d4037;
+    --accent-orange: #d98b5f;
+    --beige: #f3e8dc;
+    --beige-soft: #faf6f1;
+    --bg-light: #ffffff;
+    --text-dark: #2d2422;
 }
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
-body{background:var(--bg-light);color:var(--text-dark); scroll-behavior: smooth;}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
 
-section { padding: 140px 10%; min-height: 100vh; position: relative; overflow: hidden; }
+html {
+    scroll-behavior: smooth;
+}
 
-/* --- EFFET FUMÉ --- */
+body {
+    background: var(--bg-light);
+    color: var(--text-dark);
+    overflow-x: hidden;
+}
+
+section {
+    padding: 140px 10%;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Gradients de transition */
+section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 170px;
+    background: linear-gradient(to bottom, var(--fade-top, #ffffff), transparent);
+    z-index: 2;
+    pointer-events: none;
+}
+
 section::after {
-    content: ""; position: absolute; bottom: 0; left: 0; width: 100%; height: 150px;
-    background: linear-gradient(to bottom, transparent, var(--bg-light));
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 170px;
+    background: linear-gradient(to top, var(--fade-bottom, #ffffff), transparent);
     z-index: 2;
     pointer-events: none;
 }
 
-#temoignages::before, #rdv::before, #faq::before {
-    content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 150px;
-    background: linear-gradient(to top, transparent, var(--bg-light));
-    z-index: 2;
-    pointer-events: none;
+/* Navigation */
+nav {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(15px);
+    padding: 10px 25px;
+    border-radius: 50px;
+    display: flex;
+    gap: 25px;
+    align-items: center;
+    justify-content: center;
+    z-index: 999999;
+    box-shadow: 0 15px 35px rgba(93, 64, 55, 0.10);
+    border: 1px solid rgba(93, 64, 55, 0.06);
+    white-space: nowrap;
 }
 
-/* NAV */
-nav{
-  position:fixed;top:20px;left:50%;transform:translateX(-50%);
-  background:rgba(255,255,255,0.85);backdrop-filter:blur(15px);
-  padding:10px 30px;border-radius:50px;
-  display:flex;gap:25px;z-index:999999;
-  box-shadow:0 15px 35px rgba(93, 64, 55, 0.1);
-  border: 1px solid rgba(93, 64, 55, 0.05);
-  align-items: center;
+nav a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-size: .9rem;
+    font-weight: 500;
 }
-nav a{text-decoration:none;color:var(--text-dark);font-size:.9rem; font-weight: 500;}
 
-.rdv-btn-nav{ 
-    background:var(--primary-brown);
-    color:white !important; 
-    padding:12px 25px;
-    border-radius:40px; 
-    transition: 0.3s;
+.rdv-btn-nav {
+    background: var(--accent-orange);
+    color: white !important;
+    padding: 12px 25px;
+    border-radius: 40px;
+    transition: .3s;
     animation: pulse 2s infinite;
 }
 
 @keyframes pulse {
-  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(93, 64, 55, 0.4); }
-  70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(93, 64, 55, 0); }
-  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(93, 64, 55, 0); }
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(217, 139, 95, .40); }
+    70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(217, 139, 95, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(217, 139, 95, 0); }
 }
 
-/* HERO */
+/* Accueil */
 #accueil {
-  color: white; display: flex; align-items: center; justify-content: flex-end; text-align: right;
-  background: url('premier.png') no-repeat center center/cover;
+    --fade-top: #ffffff;
+    --fade-bottom: #ffffff;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    text-align: right;
+    background-image: url('acceuil.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
 }
-#accueil .overlay-hero {
-  content: ""; position: absolute; inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.2), transparent 50%);
-  z-index: 1;
+
+.overlay-hero {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,.12), rgba(0,0,0,.04) 55%, rgba(0,0,0,.18));
+    z-index: 1;
 }
 
-.hero-content { position: relative; z-index: 3; max-width: 600px; margin-right: 5%; }
-.hero-content h1 { 
-    font-size: 4.5rem; color: white; line-height: 1.2; margin-bottom: 20px; 
-    text-shadow: 3px 3px 0px var(--primary-brown), 5px 5px 15px rgba(0,0,0,0.3); 
+.hero-content {
+    position: relative;
+    z-index: 3;
+    max-width: 650px;
+    margin-right: 5%;
 }
-.hero-content .subtitle { font-size: 1.8rem; color: white; font-weight: 300; margin-bottom: 30px; display: block; }
 
-/* PHILOSOPHIE */
-#philosophie{background:var(--bg-light); text-align:center;}
-#philosophie h2{font-size:2.8rem;margin-bottom:80px; color: var(--primary-brown); line-height: 1.4;}
-.philo-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
-.philo-item{ background:white;padding:45px;border-radius:35px; box-shadow:0 15px 40px rgba(0,0,0,0.03); border-bottom: 4px solid var(--accent-gold); text-align: left; }
-.philo-item h3 { margin-bottom: 15px; color: var(--primary-brown); }
+.hero-content h1 {
+    font-size: 4.5rem;
+    color: white;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    text-shadow: 3px 3px 0 rgba(93, 64, 55, .65), 5px 5px 15px rgba(0, 0, 0, .30);
+}
 
-/* FAQ */
-.faq-section { background: var(--soft-bg); }
-.faq-layout { display: flex; gap: 60px; max-width: 1100px; margin: 0 auto; align-items: flex-start; }
-.faq-intro { flex: 1; position: sticky; top: 150px; text-align: left; }
-.faq-intro h2 { font-size: 2.5rem; color: var(--primary-brown); line-height: 1.2; margin-bottom: 20px; }
-.faq-intro p { font-size: 1rem; color: #666; font-style: italic; }
+.hero-content .subtitle {
+    font-size: 1.45rem;
+    color: white;
+    font-weight: 300;
+    margin-bottom: 30px;
+    display: block;
+}
 
-.faq-container { flex: 1.5; width: 100%; }
-.faq-item { background: white; border-radius: 15px; margin-bottom: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.02); overflow: hidden; border: 1px solid rgba(93, 64, 55, 0.05); }
-.faq-question { padding: 18px 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 500; color: var(--primary-brown); font-size: 0.95rem; text-align: left; }
-.faq-answer { padding: 0 25px; max-height: 0; overflow: hidden; transition: 0.4s ease; color: #666; font-size: 0.85rem; line-height: 1.6; }
-.faq-item.active .faq-answer { padding: 0 25px 20px; max-height: 300px; }
-.faq-icon { color: var(--accent-gold); transition: 0.3s; font-size: 1.2rem; margin-left: 10px; }
-.faq-item.active .faq-icon { transform: rotate(45deg); }
+.hero-content p {
+    color: white;
+    font-size: 1.05rem;
+    text-shadow: 0 2px 8px rgba(0,0,0,.45);
+}
 
-/* FORFAITS */
-#formules { background: var(--bg-light); }
-#formules h2{text-align:center;font-size:3rem;margin-bottom:20px; color: var(--primary-brown);}
-.sub{opacity:.6;text-align:center;margin-bottom:60px; font-style: italic;}
-.offers-rect{display:flex;gap:20px; height: 580px;}
-.offer-rect{position:relative;flex:1;border-radius:40px;overflow:hidden;transition:.7s cubic-bezier(0.4, 0, 0.2, 1);cursor:pointer}
-.offer-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(.6);transition:.7s}
-.offer-content{position:absolute;inset:0;padding:30px;display:flex;flex-direction:column;justify-content:flex-end;color:white; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);}
-.details{max-height:0;opacity:0;transition:.5s; font-size: 0.85rem;}
-.details ul { list-style: none; margin-top: 15px; }
-.details ul li { margin-bottom: 6px; position: relative; padding-left: 15px; line-height: 1.3; }
-.details ul li::before { content: "•"; position: absolute; left: 0; color: var(--accent-gold); }
+/* Philosophie */
+#philosophie {
+    --fade-top: #ffffff;
+    --fade-bottom: var(--beige-soft);
+    background: var(--bg-light);
+    text-align: center;
+}
+
+#philosophie h2 {
+    font-size: 2.8rem;
+    margin-bottom: 80px;
+    color: var(--primary-brown);
+    line-height: 1.4;
+}
+
+.philo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    position: relative;
+    z-index: 3;
+}
+
+.philo-item {
+    background: white;
+    padding: 45px;
+    border-radius: 35px;
+    box-shadow: 0 15px 40px rgba(0,0,0,.035);
+    border-bottom: 4px solid var(--accent-orange);
+    text-align: left;
+}
+
+.philo-item h3 {
+    margin-bottom: 15px;
+    color: var(--primary-brown);
+}
+
+/* Forfaits */
+#formules {
+    --fade-top: var(--beige-soft);
+    --fade-bottom: var(--beige-soft);
+    background: var(--bg-light);
+}
+
+#formules h2 {
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: var(--primary-brown);
+}
+
+.sub {
+    opacity: .6;
+    text-align: center;
+    margin-bottom: 60px;
+    font-style: italic;
+}
+
+.offers-rect {
+    display: flex;
+    gap: 20px;
+    height: 580px;
+    position: relative;
+    z-index: 3;
+}
+
+.offer-rect {
+    position: relative;
+    flex: 1;
+    border-radius: 40px;
+    overflow: hidden;
+    transition: .7s cubic-bezier(.4, 0, .2, 1);
+    cursor: pointer;
+}
+
+.offer-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    filter: brightness(.6);
+    transition: .7s;
+}
+
+.offer-content {
+    position: absolute;
+    inset: 0;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    color: white;
+    background: linear-gradient(to top, rgba(0,0,0,.9), transparent);
+}
+
+.details {
+    max-height: 0;
+    opacity: 0;
+    transition: .5s;
+    font-size: .85rem;
+}
+
+.details ul {
+    list-style: none;
+    margin-top: 15px;
+}
+
+.details ul li {
+    margin-bottom: 6px;
+    position: relative;
+    padding-left: 15px;
+    line-height: 1.3;
+}
+
+.details ul li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--accent-orange);
+}
+
+.price-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+    border-bottom: 1px solid rgba(255,255,255,.3);
+    padding-bottom: 5px;
+}
+
+.price strong {
+    color: var(--accent-orange);
+    font-size: 1.4rem;
+}
 
 @media(min-width: 901px) {
-    .offers-rect .offer-rect:hover{flex:3}
-    .offers-rect .offer-rect:hover .details{max-height:400px;opacity:1; margin-top: 15px;}
+    .offers-rect .offer-rect:hover { flex: 3; }
+    .offers-rect .offer-rect:hover .details { max-height: 400px; opacity: 1; margin-top: 15px; }
 }
 
-/* VERSION MOBILE */
-@media(max-width:900px){
-  section { padding: 80px 5% !important; }
-  .faq-layout { flex-direction: column; gap: 30px; }
-  .faq-intro { position: static; text-align: center; }
-  .faq-intro h2 { font-size: 2.2rem; }
-  .faq-question { padding: 15px 20px; font-size: 0.9rem; }
-  .hero-content h1 { font-size: 2.8rem; }
-  .philo-grid { grid-template-columns: 1fr; }
-  .offers-rect { flex-direction: column; height: auto; gap: 20px; }
-  .offer-rect { height: auto; min-height: 450px; }
-  .details { max-height: none !important; opacity: 1 !important; margin-top: 15px; }
-  nav { width: 95%; gap: 10px; padding: 10px 15px; }
-  nav a { font-size: 0.65rem; }
+/* FAQ */
+#faq {
+    --fade-top: var(--beige-soft);
+    --fade-bottom: var(--beige);
+    background: var(--beige-soft);
 }
 
-.price-line{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 5px;}
-.price strong{color:var(--accent-gold);font-size:1.4rem}
+.faq-layout {
+    display: flex;
+    gap: 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+    align-items: flex-start;
+    position: relative;
+    z-index: 3;
+}
 
-/* TEMOIGNAGES */
-#temoignages { background: var(--accent-gold); color: white; padding: 140px 0; text-align: center; }
-#temoignages h2 { margin-bottom: 50px; font-size: 2.5rem; }
-.testimonial-track { display:flex; gap:30px; animation:scroll 35s linear infinite; margin-bottom: 60px; }
-.testimonial { min-width:300px; background:rgba(255,255,255,0.2); padding:35px; border-radius:25px; font-style:italic; font-size: 0.95rem; border: 1px solid rgba(255,255,255,0.1); text-align: left; }
-@keyframes scroll{ 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+.faq-intro {
+    flex: 1;
+    position: sticky;
+    top: 150px;
+    text-align: left;
+}
+
+.faq-intro h2 {
+    font-size: 2.5rem;
+    color: var(--primary-brown);
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.faq-intro p {
+    font-size: 1rem;
+    color: #666;
+    font-style: italic;
+}
+
+.faq-container {
+    flex: 1.5;
+    width: 100%;
+}
+
+.faq-item {
+    background: white;
+    border-radius: 15px;
+    margin-bottom: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.02);
+    overflow: hidden;
+    border: 1px solid rgba(93, 64, 55, .05);
+}
+
+.faq-question {
+    padding: 18px 25px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
+    color: var(--primary-brown);
+    font-size: .95rem;
+}
+
+.faq-answer {
+    padding: 0 25px;
+    max-height: 0;
+    overflow: hidden;
+    transition: .4s ease;
+    color: #666;
+    font-size: .85rem;
+    line-height: 1.6;
+}
+
+.faq-item.active .faq-answer {
+    padding: 0 25px 20px;
+    max-height: 300px;
+}
+
+.faq-icon {
+    color: var(--accent-orange);
+    transition: .3s;
+    font-size: 1.2rem;
+    margin-left: 10px;
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(45deg);
+}
+
+/* Témoignages */
+#temoignages {
+    --fade-top: var(--beige);
+    --fade-bottom: var(--beige-soft);
+    background: var(--beige);
+    color: var(--primary-brown);
+    padding: 140px 0;
+    text-align: center;
+}
+
+#temoignages h2 {
+    margin-bottom: 50px;
+    font-size: 2.5rem;
+    color: var(--primary-brown);
+}
+
+.testimonial-track {
+    display: flex;
+    gap: 30px;
+    animation: scroll 35s linear infinite;
+    margin-bottom: 60px;
+    position: relative;
+    z-index: 3;
+}
+
+.testimonial {
+    min-width: 300px;
+    background: rgba(255, 255, 255, .38);
+    padding: 35px;
+    border-radius: 25px;
+    font-style: italic;
+    font-size: .95rem;
+    border: 1px solid rgba(217, 139, 95, .22);
+    text-align: left;
+    box-shadow: 0 10px 30px rgba(93, 64, 55, .04);
+}
+
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
 
 .btn-avis {
-    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-    background: white; color: var(--primary-brown); padding: 18px 40px;
-    border-radius: 50px; text-decoration: none; font-weight: 600; transition: 0.3s;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: white;
+    color: var(--primary-brown);
+    padding: 18px 40px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: .3s;
+    box-shadow: 0 10px 25px rgba(0,0,0,.08);
+    position: relative;
+    z-index: 3;
 }
-.btn-avis svg { width: 20px; height: 20px; }
 
-/* PRISE EN MAIN */
-#prise-en-main { background: var(--bg-light); text-align: center; }
-.steps-grid { display: flex; justify-content: space-around; gap: 40px; flex-wrap: wrap; margin-top: 50px; }
-.step-card { flex: 1; min-width: 250px; padding: 40px 25px; border-radius: 35px; background: var(--soft-bg); transition: 0.4s; border: 1px solid rgba(93, 64, 55, 0.05); }
-.step-number { width: 55px; height: 55px; background: var(--accent-gold); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; font-weight: 600; font-size: 1.2rem;}
+.btn-avis svg {
+    width: 20px;
+    height: 20px;
+}
 
-/* RDV & BOUTON CALENDRIER */
-#rdv { background: url('rdv.png') no-repeat center center/cover; padding: 140px 10%; display: flex; align-items: center; }
-.calendar { position: relative; z-index: 3; max-width: 650px; width: 100%; margin:auto; background: rgba(255, 255, 255, 0.98); padding: 60px; border-radius: 45px; box-shadow: 0 30px 60px rgba(0,0,0,0.15); text-align: center; }
+/* Prise en main */
+#prise-en-main {
+    --fade-top: var(--beige-soft);
+    --fade-bottom: var(--beige);
+    background: var(--bg-light);
+    text-align: center;
+}
+
+#prise-en-main h2 {
+    color: var(--primary-brown);
+    font-size: 2.5rem;
+    position: relative;
+    z-index: 3;
+}
+
+.steps-grid {
+    display: flex;
+    justify-content: space-around;
+    gap: 40px;
+    margin-top: 50px;
+    position: relative;
+    z-index: 3;
+}
+
+.step-card {
+    flex: 1;
+    min-width: 0;
+    padding: 40px 25px;
+    border-radius: 35px;
+    background: var(--beige-soft);
+    transition: .4s;
+    border: 1px solid rgba(217, 139, 95, .20);
+}
+
+.step-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(93, 64, 55, .08);
+}
+
+.step-number {
+    width: 55px;
+    height: 55px;
+    background: var(--accent-orange);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+/* Rendez-vous */
+#rdv {
+    --fade-top: var(--beige);
+    --fade-bottom: #ffffff;
+    background-image: linear-gradient(to bottom, rgba(243,232,220,0.85) 0%, rgba(243,232,220,0.4) 30%, rgba(243,232,220,0.15) 70%, rgba(255,255,255,0.7) 100%), url('pdvp.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding: 140px 10%;
+    display: flex;
+    align-items: center;
+}
+
+.calendar {
+    position: relative;
+    z-index: 3;
+    max-width: 650px;
+    width: 100%;
+    margin: auto;
+    background: rgba(243, 232, 220, .62);
+    backdrop-filter: blur(12px);
+    padding: 60px;
+    border-radius: 45px;
+    border: 1px solid rgba(255, 255, 255, .45);
+    box-shadow: 0 25px 60px rgba(93, 64, 55, .10);
+    text-align: center;
+}
+
+.calendar h2 {
+    color: var(--primary-brown);
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+.calendar p {
+    margin-bottom: 25px;
+}
 
 .btn-zcal {
-    display: inline-block; background: var(--primary-brown); color: white; padding: 20px 45px;
-    border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1.1rem;
-    transition: 0.3s; box-shadow: 0 15px 30px rgba(93, 64, 55, 0.2);
+    display: inline-block;
+    background: var(--accent-orange);
+    color: white;
+    padding: 20px 45px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: .3s;
+    box-shadow: 0 15px 30px rgba(217, 139, 95, .22);
     animation: pulse 2s infinite;
 }
-.btn-zcal:hover { transform: translateY(-3px); box-shadow: 0 20px 40px rgba(93, 64, 55, 0.3); }
 
-/* FOOTER */
-.footer-main { background: white; padding: 80px 0; border-top: 1px solid #f0f0f0; margin-top: 80px;}
-.footer-container { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 80px; }
-.footer-logo img { max-width: 220px; }
-.footer-info { text-align: left; color: var(--text-dark); line-height: 2; }
-.info-item span { margin-right: 15px; color: var(--accent-gold); }
-.btn-mentions { background: none; border: none; color: #999; text-decoration: underline; cursor: pointer; margin-top: 15px; font-size: 0.85rem;}
+/* Footer */
+.footer-main {
+    background: white;
+    padding: 80px 0;
+    border-top: 1px solid #f0f0f0;
+}
 
-/* MODALS */
-.modal-mentions { display: none; position: fixed; z-index: 100000; left: 0; top: 0; width: 100%; height: 100%; background: white; overflow-y: auto; }
-.modal-content-wrapper { max-width: 800px; margin: 0 auto; padding: 120px 5% 60px; line-height: 1.8; color: #444; }
-.modal-content-wrapper h3 { 
-    color: var(--primary-brown); 
-    border-left: 4px solid var(--accent-gold); 
-    padding-left: 15px; 
-    margin: 30px 0 15px; 
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 80px;
+}
+
+.footer-logo img {
+    max-width: 220px;
+}
+
+.footer-info {
+    text-align: left;
+    color: var(--text-dark);
+    line-height: 2;
+}
+
+.info-item span {
+    margin-right: 15px;
+    color: var(--accent-orange);
+}
+
+.btn-mentions {
+    background: none;
+    border: none;
+    color: #999;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-top: 15px;
+    font-size: .85rem;
+}
+
+/* Modals */
+.modal-mentions {
+    display: none;
+    position: fixed;
+    z-index: 100000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    overflow-y: auto;
+}
+
+.modal-content-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 120px 5% 60px;
+    line-height: 1.8;
+    color: #444;
+}
+
+.modal-content-wrapper h3 {
+    color: var(--primary-brown);
+    border-left: 4px solid var(--accent-orange);
+    padding-left: 15px;
+    margin: 30px 0 15px;
     font-size: 1.3rem;
 }
-.close-modal { position: fixed; top: 30px; right: 50px; font-size: 40px; cursor: pointer; color: var(--primary-brown); z-index: 100001; }
+
+.close-modal {
+    position: fixed;
+    top: 30px;
+    right: 50px;
+    font-size: 40px;
+    cursor: pointer;
+    color: var(--primary-brown);
+    z-index: 100001;
+}
+
+@media(max-width: 900px) {
+    section { padding: 100px 5% !important; }
+    nav { width: 96%; gap: 8px; padding: 9px 12px; }
+    nav a { font-size: .62rem; }
+    .rdv-btn-nav { padding: 10px 13px; }
+    .hero-content { max-width: 90%; margin-right: 0; }
+    .hero-content h1 { font-size: 2.8rem; }
+    .philo-grid { grid-template-columns: 1fr; }
+    .offers-rect { flex-direction: column; height: auto; }
+    .offer-rect { height: auto; min-height: 450px; }
+    .details { max-height: none !important; opacity: 1 !important; margin-top: 15px; }
+    .faq-layout { flex-direction: column; gap: 30px; }
+    .faq-intro { position: static; text-align: center; }
+    .steps-grid { flex-direction: column; }
+    .footer-container { flex-direction: column; gap: 30px; text-align: center; }
+    .footer-info { text-align: center; }
+}
 </style>
 </head>
-
 <body>
 
 <nav id="top-nav">
-  <a href="#accueil" onclick="closeAllModals()">Accueil</a>
-  <a href="#formules" onclick="closeAllModals()">Forfaits</a>
-  <a href="#faq" onclick="closeAllModals()">FAQ</a>
-  <a href="#temoignages" onclick="closeAllModals()">Témoignages</a>
-  <a href="#rdv" class="rdv-btn-nav" onclick="closeAllModals()">Prendre rendez-vous</a>
+    <a href="#accueil" onclick="closeAllModals()">Accueil</a>
+    <a href="#formules" onclick="closeAllModals()">Forfaits</a>
+    <a href="#faq" onclick="closeAllModals()">FAQ</a>
+    <a href="#temoignages" onclick="closeAllModals()">Ils en parlent</a>
+    <a href="#rdv" class="rdv-btn-nav" onclick="closeAllModals()">Prendre rendez-vous</a>
 </nav>
 
+<!-- MENTIONS LÉGALES MISES À JOUR -->
 <div id="modalMentions" class="modal-mentions">
     <span class="close-modal" onclick="closeMentions()">&times;</span>
     <div class="modal-content-wrapper">
-        <h2 style="text-align:center; color:var(--primary-brown); margin-bottom:40px;">Mentions légales</h2>
+        <h2 style="text-align:center;color:var(--primary-brown);margin-bottom:40px;">Mentions légales</h2>
         <p><strong>Propriétaire :</strong> HUCHETTE Eva, entrepreneur individuel | <strong>SIRET :</strong> 99919530800013</p>
-        <p><strong>Adresse :</strong> 238 impasse de Goutemajou 09210 Lézat sur lèze</p>
+        <p><strong>Adresse :</strong> Lezat sur lèze</p>
         <p><strong>Contact :</strong> 06.98.78.70.43 | contact@lebureaudeva.fr</p>
+        
         <h3>Activité</h3>
-        <p>Le bureau d’eva propose des services de secrétariat médical externalisé et de gestion d’agenda à destination de professionnels de santé et de praticiens paramédicaux.</p>
+        <p>Le bureau d’eva propose des services de secrétariat externalisé et de gestion d’agenda à destination des professionnels, entreprises et praticiens.</p>
+        
         <h3>Hébergement</h3>
         <p>Ce site est hébergé par GitHub Pages (GitHub Inc., 88 Colin P. Kelly Jr. St., San Francisco, CA 94107, USA).</p>
+        
         <h3>Données personnelles</h3>
-        <p>Les informations collectées via l'e-mail ou la prise de rendez-vous sont utilisées uniquement pour répondre aux demandes de contact. Conformément au RGPD, vous disposez d’un droit d’accès, de modification et de suppression de vos données via contact@lebureaudeva.fr.</p>
+        <p>Les informations collectées via l'e-mail ou la prise de rendez-vous sont uniquement utilisées pour répondre aux demandes de contact. Conformément au RGPD, vous disposez d’un droit d’accès, de modification et de suppression de vos données via contact@lebureaudeva.fr.</p>
     </div>
 </div>
 
+<!-- CGPS MISES À JOUR -->
 <div id="modalCGPS" class="modal-mentions">
     <span class="close-modal" onclick="closeCGPS()">&times;</span>
     <div class="modal-content-wrapper">
-        <h2 style="text-align:center; color:var(--primary-brown); margin-bottom:40px;">Conditions Générales de Prestations de Services</h2>
+        <h2 style="text-align:center;color:var(--primary-brown);margin-bottom:40px;">Conditions Générales de Prestations de Services</h2>
+        
         <h3>1. OBJET</h3>
-        <p>Les présentes CGPS définissent les conditions dans lesquelles Eva HUCHETTE (Le bureau d’Eva) fournit ses prestations de télésecrétariat médical. Toute commande implique l'acceptation sans réserve des présentes conditions.</p>
+        <p>Les présentes CGPS définissent les conditions dans lesquelles Eva HUCHETTE (Le bureau d’eva) fournit ses prestations de télésecrétariat et d'assistance administrative. Toute commande implique l'acceptation sans réserve des présentes conditions.</p>
+        
         <h3>2. NATURE DES PRESTATIONS</h3>
-        <p>Les services incluent : la réception d'appels, la gestion d'agendas, la prise et modification de rendez-vous. L'activité exclut strictement tout acte médical.</p>
+        <p>Les services incluent : la réception d'appels, la gestion d'agendas, la prise et modification de rendez-vous ainsi que l'assistance administrative générale.</p>
+        
         <h3>3. MODALITÉS D’EXÉCUTION</h3>
         <p>Le bureau d'Eva s'engage à réaliser les prestations avec professionnalisme. Le client s'engage à fournir toutes les informations nécessaires à la bonne exécution des missions.</p>
+        
         <h3>4. TARIFS ET PAIEMENT</h3>
         <p>Les tarifs sont nets de TVA (art. 293 B du CGI). Les prestations sont facturées mensuellement et payables à réception par virement.</p>
+        
         <h3>5. DURÉE ET RÉSILIATION</h3>
         <p>Les forfaits sont sans engagement de durée. La collaboration peut être interrompue sous réserve d'un préavis de 1 mois par mail.</p>
+        
         <h3>6. CONFIDENTIALITÉ</h3>
-        <p>Le bureau d'Eva est tenu au secret professionnel absolu. Les données patients restent la propriété exclusive du praticien.</p>
+        <p>Le bureau d'Eva est tenu au secret professionnel absolu. Les données transmises restent la propriété exclusive du client.</p>
     </div>
 </div>
 
 <div id="main-content">
     <section id="accueil">
-      <div class="overlay-hero"></div>
-      <div class="hero-content">
-        <h1>Le bureau d'Eva</h1>
-        <span class="subtitle">Télésecrétaire médicale</span>
-        <p>Une organisation claire pour les praticiens, un accueil rassurant pour les patients.</p>
-      </div>
+        <div class="overlay-hero"></div>
+        <div class="hero-content">
+            <h1>Le bureau d'Eva</h1>
+            <span class="subtitle">Secrétaire indépendante</span>
+            <p>Une organisation plus simple, pour vous permettre de vous concentrer sur l’essentiel.</p>
+        </div>
     </section>
 
     <section id="philosophie">
-      <h2>Votre priorité : les patients.<br>La mienne : vos appels.</h2>
-      <div class="philo-grid">
-        <div class="philo-item"><h3>Gagner du temps</h3><p>Je m’occupe de vos appels et de votre agenda pour que vous puissiez vous concentrer sur vos patients.</p></div>
-        <div class="philo-item"><h3>Accueil attentif</h3><p>Chaque appel est traité avec bienveillance et professionnalisme, comme si j'étais à votre cabinet.</p></div>
-        <div class="philo-item"><h3>Agenda organisé</h3><p>Prise de rendez-vous et suivi quotidien pour un planning fluide et sans fausse note.</p></div>
-        <div class="philo-item"><h3>Rentabilité</h3><p>Mes services sont rapidement rentabilisés grâce à une gestion optimale de vos rendez-vous.</p></div>
-      </div>
+        <h2>Un peu plus de légèreté dans votre quotidien</h2>
+        <div class="philo-grid">
+            <div class="philo-item">
+                <h3>Du temps pour l’essentiel</h3>
+                <p>Je m’occupe de certaines tâches pour vous laisser plus de temps pour ce qui compte vraiment dans votre quotidien.</p>
+            </div>
+            <div class="philo-item">
+                <h3>Un accueil attentionné</h3>
+                <p>Vos appels et vos demandes sont pris en charge avec écoute, douceur et professionnalisme.</p>
+            </div>
+            <div class="philo-item">
+                <h3>Une organisation sereine</h3>
+                <p>Je vous aide à garder un agenda clair et une organisation qui vous ressemble.</p>
+            </div>
+            <div class="philo-item">
+                <h3>L’esprit plus léger</h3>
+                <p>Une aide au quotidien, simplement, pour vous enlever quelques petites choses de la tête.</p>
+            </div>
+        </div>
     </section>
 
     <section id="formules">
-      <h2>Les forfaits</h2>
-      <div class="sub">Sans engagement • 1 semaine d’essai possible</div>
-      <div class="offers-rect">
-        <script>
-            const detailForfait = `<ul><li>Réception des appels</li><li>Organisation et suivi de l’agenda</li><li>Prise et modification de RDV</li><li>Envoi de SMS de rappel</li><li>Gestion des listes d'attentes</li></ul>`;
-        </script>
-        
-        <div class="offer-rect">
-          <div class="offer-bg" style="background-image:url('forfait1.png')"></div>
-          <div class="offer-content">
-              <h3>À l’appel</h3>
-              <div class="details">
-                  <div class="price-line"><span>Sur mesure</span><span class="price"><strong>1,50€</strong><span class="unit">/appel</span></span></div>
-                  <div id="d1"></div><script>document.getElementById('d1').innerHTML=detailForfait</script>
-              </div>
-          </div>
-        </div>
+        <h2>Les forfaits</h2>
+        <div class="sub">Sans engagement • 1 semaine d’essai possible</div>
+        <div class="offers-rect">
+            <div class="offer-rect">
+                <div class="offer-bg" style="background-image:url('forfait1.png')"></div>
+                <div class="offer-content">
+                    <h3>À l’appel</h3>
+                    <div class="details">
+                        <div class="price-line">
+                            <span>Sur mesure</span>
+                            <span class="price"><strong>1,50€</strong> <span class="unit">/appel</span></span>
+                        </div>
+                        <ul>
+                            <li>Gestion de vos appels</li>
+                            <li>Gestion de votre agenda</li>
+                            <li>Prise et suivi de vos rendez-vous</li>
+                            <li>Réponse à vos demandes</li>
+                            <li>Suivi et rappels</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
-        <div class="offer-rect">
-            <div class="offer-bg" style="background-image:url('forfait2.png')"></div>
-            <div class="offer-content">
-                <h3>Start</h3>
-                <div class="details">
-                    <div class="price-line"><span>200 appels/mois</span><span class="price"><strong>1,40€</strong><span class="unit">/appel</span></span></div>
-                    <div id="d2"></div><script>document.getElementById('d2').innerHTML=detailForfait</script>
+            <div class="offer-rect">
+                <div class="offer-bg" style="background-image:url('forfait2.png')"></div>
+                <div class="offer-content">
+                    <h3>Start</h3>
+                    <div class="details">
+                        <div class="price-line">
+                            <span>200 appels/mois</span>
+                            <span class="price"><strong>1,40€</strong> <span class="unit">/appel</span></span>
+                        </div>
+                        <ul>
+                            <li>Gestion de vos appels</li>
+                            <li>Gestion de votre agenda</li>
+                            <li>Prise et suivi de vos rendez-vous</li>
+                            <li>Réponse à vos demandes</li>
+                            <li>Suivi et rappels</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="offer-rect">
+                <div class="offer-bg" style="background-image:url('forfait3.png')"></div>
+                <div class="offer-content">
+                    <h3>Active</h3>
+                    <div class="details">
+                        <div class="price-line">
+                            <span>350 appels/mois</span>
+                            <span class="price"><strong>1,35€</strong> <span class="unit">/appel</span></span>
+                        </div>
+                        <ul>
+                            <li>Gestion de vos appels</li>
+                            <li>Gestion de votre agenda</li>
+                            <li>Prise et suivi de vos rendez-vous</li>
+                            <li>Réponse à vos demandes</li>
+                            <li>Suivi et rappels</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="offer-rect">
+                <div class="offer-bg" style="background-image:url('forfait4.png')"></div>
+                <div class="offer-content">
+                    <h3>Collective</h3>
+                    <div class="details">
+                        <div class="price-line">
+                            <span>600 appels/mois</span>
+                            <span class="price"><strong>1,30€</strong> <span class="unit">/appel</span></span>
+                        </div>
+                        <ul>
+                            <li>Gestion de vos appels</li>
+                            <li>Gestion de votre agenda</li>
+                            <li>Prise et suivi de vos rendez-vous</li>
+                            <li>Réponse à vos demandes</li>
+                            <li>Suivi et rappels</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <div class="offer-rect">
-            <div class="offer-bg" style="background-image:url('forfait3.png')"></div>
-            <div class="offer-content">
-                <h3>Active</h3>
-                <div class="details">
-                    <div class="price-line"><span>350 appels/mois</span><span class="price"><strong>1,35€</strong><span class="unit">/appel</span></span></div>
-                    <div id="d3"></div><script>document.getElementById('d3').innerHTML=detailForfait</script>
-                </div>
-            </div>
-        </div>
-
-        <div class="offer-rect">
-            <div class="offer-bg" style="background-image:url('forfait4.png')"></div>
-            <div class="offer-content">
-                <h3>Collective</h3>
-                <div class="details">
-                    <div class="price-line"><span>600 appels/mois</span><span class="price"><strong>1,30€</strong><span class="unit">/appel</span></span></div>
-                    <div id="d4"></div><script>document.getElementById('d4').innerHTML=detailForfait</script>
-                </div>
-            </div>
-        </div>
-      </div>
     </section>
 
-    <section id="faq" class="faq-section">
+    <section id="faq">
         <div class="faq-layout">
             <div class="faq-intro">
                 <h2>Je réponds à vos interrogations</h2>
@@ -322,95 +836,137 @@ nav a{text-decoration:none;color:var(--text-dark);font-size:.9rem; font-weight: 
             <div class="faq-container">
                 <div class="faq-item">
                     <div class="faq-question">Qu'est-ce qu'une secrétaire indépendante ? <span class="faq-icon">+</span></div>
-                    <div class="faq-answer">C'est une collaboratrice externe qui gère vos missions administratives à distance. Contrairement à une salariée, vous n'avez pas de charges sociales, pas de congés payés à gérer et aucun matériel à fournir.</div>
+                    <div class="faq-answer">C’est simplement une personne qui vous accompagne à distance dans les tâches que vous souhaitez lui confier. Vous choisissez ce dont vous avez besoin, et nous trouvons ensemble une organisation qui vous convient.</div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">Avec quels professionnels travaillez-vous ? <span class="faq-icon">+</span></div>
-                    <div class="faq-answer">Je me spécialise dans le secteur médical et paramédical : médecins généralistes, ostéopathes, kinésithérapeutes, psychologues, etc.</div>
+                    <div class="faq-answer">J'accompagne tous types de professionnels, entreprises et praticiens qui souhaitent déléguer leur secrétariat et leur gestion administrative au quotidien.</div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">Comment gérez-vous les urgences ? <span class="faq-icon">+</span></div>
-                    <div class="faq-answer">Nous établissons ensemble un protocole strict. En cas d'urgence signalée, je peux vous transférer l'appel sur une ligne prioritaire ou orienter le patient vers les services de secours selon vos consignes.</div>
+                    <div class="faq-answer">Avant de commencer, nous prenons le temps de définir ensemble vos consignes et vos priorités. Je sais ainsi exactement comment réagir lorsqu’une situation particulière se présente.</div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">Quels sont les services exacts inclus ? <span class="faq-icon">+</span></div>
-                    <div class="faq-answer">Mes prestations incluent l'accueil téléphonique personnalisé, la gestion de votre agenda en temps réel, la prise de rendez-vous, l'envoi de rappels par SMS et la gestion des listes d'attente.</div>
+                    <div class="faq-answer">Je peux vous accompagner pour vos appels, votre agenda, vos rendez-vous, mais aussi pour le suivi de certaines demandes et rappels. Nous adaptons simplement l’organisation à votre façon de travailler.</div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">Les forfaits sont-ils réellement sans engagement ? <span class="faq-icon">+</span></div>
-                    <div class="faq-answer">Oui, la liberté est totale. Vous pouvez interrompre la prestation à tout moment avec un simple préavis de 1 mois par mail.</div>
+                    <div class="faq-answer">Oui, vous restez libre. Les forfaits sont sans engagement de durée et la collaboration peut être arrêtée avec un préavis d’un mois par mail.</div>
                 </div>
             </div>
         </div>
     </section>
 
     <section id="temoignages">
-      <h2>Témoignages</h2>
-      <div class="testimonial-track">
-        <div class="testimonial">« Organisation fluide et accueil professionnel »</div>
-        <div class="testimonial">« Un vrai soulagement au quotidien pour mon cabinet »</div>
-        <div class="testimonial">« Mes patients apprécient beaucoup la douceur de l'accueil »</div>
-        <div class="testimonial">« Collaboration humaine, efficace et très réactive »</div>
-        <div class="testimonial">« Une gestion d'agenda parfaite, je recommande vivement »</div>
-      </div>
-      <div style="margin-top: 30px; text-align: center;">
-        <a href="https://g.page/r/CY5hkLbEZoVoEAE/review" target="_blank" class="btn-avis">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-          Laisser un avis Google
-        </a>
-      </div>
+        <h2>Ils en parlent</h2>
+        <div class="testimonial-track">
+            <div class="testimonial">« Organisation fluide et accueil professionnel »</div>
+            <div class="testimonial">« Un vrai soulagement au quotidien pour mon activité »</div>
+            <div class="testimonial">« Mes clients apprécient beaucoup la douceur de l'accueil »</div>
+            <div class="testimonial">« Collaboration humaine, efficace et très réactive »</div>
+            <div class="testimonial">« Une gestion d'agenda parfaite, je recommande vivement »</div>
+        </div>
+        <div style="margin-top:30px;text-align:center;">
+            <a href="https://g.page/r/CY5hkLbEZoVoEAE/review" target="_blank" class="btn-avis">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                    <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+                </svg>
+                Laisser un avis
+            </a>
+        </div>
     </section>
 
     <section id="prise-en-main">
-        <h2>Une prise en main tout en douceur</h2>
+        <h2>Prise en main tout en douceur</h2>
         <div class="steps-grid">
-            <div class="step-card"><div class="step-number">1</div><h3>Faisons connaissance</h3><p>Échangeons sur vos besoins et votre rythme de travail.</p></div>
-            <div class="step-card"><div class="step-number">2</div><h3>Vos consignes</h3><p>Transmettez vos instructions de gestion d'agenda simplement.</p></div>
-            <div class="step-card"><div class="step-number">3</div><h3>C'est parti !</h3><p>Activation immédiate de votre secrétariat externalisé.</p></div>
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h3>Prenons le temps d’échanger</h3>
+                <p>Échangeons sur vos besoins et votre rythme de travail.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h3>Trouvons votre organisation</h3>
+                <p>Transmettez-moi vos habitudes et vos instructions, simplement.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h3>Commençons sereinement</h3>
+                <p>Votre secrétariat est mis en place et nous pouvons commencer tranquillement.</p>
+            </div>
         </div>
     </section>
 
     <section id="rdv">
-      <div class="calendar">
-        <h2 style="color:var(--primary-brown); margin-bottom:20px; font-size: 1.8rem;">Parlons de votre projet</h2>
-        <p style="margin-bottom: 25px;">Réservez votre appel découverte gratuit de 30 minutes.</p>
-        <a href="https://zcal.co/lebureaudeva/30min" target="_blank" class="btn-zcal">📅 Choisir un créneau sur Zcal</a>
-      </div>
+        <div class="calendar">
+            <h2>Parlons de votre projet</h2>
+            <p>Prenez rendez-vous directement en ligne pour en discuter.</p>
+            <a href="https://zcal.co/" target="_blank" class="btn-zcal">Réserver un créneau</a>
+        </div>
     </section>
 
     <footer class="footer-main">
-      <div class="footer-container">
-        <div class="footer-logo"><img src="logo.png" alt="Logo"></div>
-        <div class="footer-info">
-          <div class="info-item"><span>📍</span> 238 impasse de Goutemajou, 09210 Lézat sur lèze</div>
-          <div class="info-item"><span>📞</span> 06.98.78.70.43</div>
-          <div class="info-item"><span>✉️</span> contact@lebureaudeva.fr</div>
-          <div style="display:flex; gap:15px; margin-top:10px;">
-            <button class="btn-mentions" onclick="openMentions()">Mentions légales</button>
-            <button class="btn-mentions" onclick="openCGPS()">CGPS</button>
-          </div>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="logo.png" alt="Le bureau d'Eva">
+            </div>
+            <div class="footer-info">
+                <div class="info-item"><span>📍</span> Lezat sur lèze</div>
+                <div class="info-item"><span>📞</span> 06 98 78 70 43</div>
+                <div class="info-item"><span>✉️</span> contact@lebureaudeva.fr</div>
+                <button class="btn-mentions" onclick="openMentions()">Mentions légales</button>
+                <button class="btn-mentions" onclick="openCGPS()" style="margin-left: 15px;">CGPS</button>
+            </div>
         </div>
-      </div>
     </footer>
 </div>
 
 <script>
-    document.querySelectorAll('.faq-question').forEach(question => {
-        question.addEventListener('click', () => {
-            const item = question.parentElement;
-            item.classList.toggle('active');
-            document.querySelectorAll('.faq-item').forEach(otherItem => {
-                if (otherItem !== item) otherItem.classList.remove('active');
-            });
-        });
+function openMentions() {
+    document.getElementById('modalMentions').style.display = 'block';
+    document.getElementById('main-content').style.display = 'none';
+    document.getElementById('top-nav').style.display = 'none';
+    window.scrollTo(0, 0);
+}
+
+function closeMentions() {
+    document.getElementById('modalMentions').style.display = 'none';
+    document.getElementById('main-content').style.display = 'block';
+    document.getElementById('top-nav').style.display = 'flex';
+}
+
+function openCGPS() {
+    document.getElementById('modalCGPS').style.display = 'block';
+    document.getElementById('main-content').style.display = 'none';
+    document.getElementById('top-nav').style.display = 'none';
+    window.scrollTo(0, 0);
+}
+
+function closeCGPS() {
+    document.getElementById('modalCGPS').style.display = 'none';
+    document.getElementById('main-content').style.display = 'block';
+    document.getElementById('top-nav').style.display = 'flex';
+}
+
+function closeAllModals() {
+    closeMentions();
+    closeCGPS();
+}
+
+const faqItems = document.querySelectorAll('.faq-item');
+faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    question.addEventListener('click', () => {
+        const currentlyActive = document.querySelector('.faq-item.active');
+        if (currentlyActive && currentlyActive !== item) {
+            currentlyActive.classList.remove('active');
+        }
+        item.classList.toggle('active');
     });
-
-    function openMentions() { document.getElementById("modalMentions").style.display = "block"; document.getElementById("main-content").style.display = "none"; window.scrollTo(0,0); }
-    function closeMentions() { document.getElementById("modalMentions").style.display = "none"; document.getElementById("main-content").style.display = "block"; }
-    function openCGPS() { document.getElementById("modalCGPS").style.display = "block"; document.getElementById("main-content").style.display = "none"; window.scrollTo(0,0); }
-    function closeCGPS() { document.getElementById("modalCGPS").style.display = "none"; document.getElementById("main-content").style.display = "block"; }
-    function closeAllModals() { closeMentions(); closeCGPS(); }
+});
 </script>
-
 </body>
 </html>
